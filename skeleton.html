@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="astroBackend" ng-controller="mainCtrl">
+<head>
+	<link rel="icon" href="{{favIcon}}">
+	<title>Astrology Life</title>
+	<style>@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');</style>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link type="text/css" rel="stylesheet" href="assets/css/bootstrap.4.0.min.css?1481227083" />
+	<link type="text/css" rel="stylesheet" href="assets/css/backend/master.css?1483318539" />
+	<link type="text/css" rel="stylesheet" href="assets/css/backend/content.css?1483318117" />
+
+	<script type="text/javascript" src="assets/js/jquery.min.js?1478726846"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js?1478726846"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+	<script type="text/javascript" src="assets/js/backend/js-content.js?1482525959"></script>
+	<script type="text/javascript" src="assets/js/backend/ng-services.js?1483211320"></script>
+	<script type="text/javascript" src="assets/js/angular-modal-service.js?1478727418"></script>
+	<script type="text/javascript" src="assets/js/ui-bootstrap-tpls-2.2.0.min.js?1480027268"></script>
+</head>
+<body id="ticketing-page">
+	<div id="site-wrapper">
+		<aside id="main-sidebar" class="clearfix">
+			<div class="logo header-same-height">
+				<img src="assets/img/backend/company-logo.png" alt="Astrology Life" />
+				<p class="page-title mb-0">CONTENT</p>
+			</div>
+			<!--- Nav Pages -->
+			<ul class="nav-vertical nav-pages">
+				<li>
+					<a href="" class="stats">Stats</a>
+				</li>
+				<li>
+					<a href="/modcontent/index" class="content active">Content</a>
+				</li>
+				<li>
+					<a href="" class="email">Email</a>
+				</li>
+				<li>
+					<a href="/modticketing/index" class="ticket">Tickets</a>
+				</li>
+				<li>
+					<a href="" class="staff">Staff</a>
+				</li>
+				<li>
+					<a href="" class="members">Members</a>
+				</li>
+			</ul>
+			<!--- Bottom Menu-->
+			<ul class="nav-vertical nav-pages bottom-menu">
+				<li>
+					<a href="" class="setting">Settings</a>
+				</li>
+				<li>
+					<a href="/internallogout" class="logout">Log Out</a>
+				</li>
+			</ul>
+			<!--- Sub Pages -->
+			<ul class="nav-vertical nav-sub-pages">
+				<li class="has-active" ng-class="midMenuItems[0] + ' ' + menuItems[0]">
+					<div class="sub-dropdown-options">
+						<a href="" ng-click="menuItemClick(0)">1 - Life Map</a>
+						<i class="fa btn-sub-menu-dropdown" ng-click="midMenuItemClick(0)"></i>
+					</div>
+					<ul>
+						<li ng-class="menuItems[1]"><a href="" ng-click="menuItemClick(1)">Report Builder</a></li>
+						<li ng-class="menuItems[2]"><a href="" ng-click="menuItemClick(2)">Sun Signs</a></li>
+						<li ng-class="menuItems[3]"><a href="" ng-click="menuItemClick(3)">Risings</a></li>
+						<li ng-class="menuItems[4]"><a href="" ng-click="menuItemClick(4)">Aspects</a></li>
+						<li ng-class="menuItems[5]"><a href="" ng-click="menuItemClick(5)">Exaltations</a></li>
+						<li ng-class="menuItems[6]"><a href="" ng-click="menuItemClick(6)">Retrogrades</a></li>
+						<li ng-class="menuItems[7]"><a href="" ng-click="menuItemClick(7)">Nodes</a></li>
+						<li ng-class="menuItems[8]"><a href="" ng-click="menuItemClick(8)">Planet and Houses</a></li>
+						<li ng-class="menuItems[9]"><a href="" ng-click="menuItemClick(9)">Planet and Signs</a></li>
+						<li ng-class="menuItems[10]"><a href="" ng-click="menuItemClick(10)">Houses and Signs</a></li>
+					</ul>
+				</li>
+				<li ng-class="menuItems[11]">
+					<a href="" ng-click="menuItemClick(11)">2 - Life Forecast</a>
+				</li>
+				<li ng-class="menuItems[12]">
+					<a href="" ng-click="menuItemClick(12)">3 - Life in Numbers</a>
+				</li>
+				<li ng-class="menuItems[13]">
+					<a href="" ng-click="menuItemClick(13)">4 - Ask an Expert</a>
+				</li>
+				<li ng-class="menuItems[14]">
+					<a href="" ng-click="menuItemClick(14)">Account Settings</a>
+				</li>
+				<li ng-class="menuItems[15]">
+					<a href="" ng-click="menuItemClick(15)">Daily Horoscope</a>
+				</li>
+				<li ng-class="menuItems[16]">
+					<a href="" ng-click="menuItemClick(16)">Product Pricing</a>
+				</li>
+				<li ng-class="menuItems[17]">
+					<a href="" ng-click="menuItemClick(17)">User Dashboard</a>
+				</li>
+			</ul>
+		</aside> <!--- /#main-sidebar -->
+		<div id="main-content" class="fixed-header" ng-view>
+<header class="clearfix">
+	<div class="top-header clearfix plx-20 pr-huge header-same-height">
+		<div class="breadcrumbs mt-1 smaller">
+			<span><a href="">Breadcrumb</a></span>
+			<span class="breadcrumbs-divider">/</span>
+			<span><a href="">breadcrumb</a></span>
+			<span class="breadcrumbs-divider">/</span>
+			<span class="current-page">breadcrumb</span>
+		</div>
+	</div>
+</header>
+<!-- CONTENT GOES HERE -->
+<!-- CONTENT GOES HERE -->
+<!-- CONTENT GOES HERE -->
+<!-- CONTENT GOES HERE -->
+<!-- CONTENT GOES HERE -->
+		</div> <!--- /#main-content -->
+	</div> <!--- /#site-wrapper -->
+</body>
+</html>

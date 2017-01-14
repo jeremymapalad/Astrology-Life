@@ -1,0 +1,868 @@
+/*--------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+# @Module CSS For -> Ticketing Module
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+--------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------
+# @Object
+-----------------------------------------------------------------------------------------------------------*/
+/*--------------------
+# @stat-box - width adjustable
+--------------------*/
+.stat-box{
+	margin-right:10px;
+	width:100%;
+	max-width:150px;
+	float:left;
+	border-radius:5px;
+	border:1px solid #c0bebe;
+	border-bottom-width:4px;
+	text-align:center;
+	cursor:pointer;
+	transition:.4s;
+}
+.stat-box div{
+	display:block;
+	padding:4px 5px 7px;
+}
+.stat-box.active, .stat-box:hover{
+	-webkit-box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	-moz-box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	border-top-color:#000;
+	border-right-color:#000;
+	border-left-color:#000;
+}
+.stat-box.stat-box-gray{
+	border-bottom-color:#959595;
+	color:#959595;
+}
+.stat-box.stat-box-black{
+	border-bottom-color:#000;
+	color:#000;
+}
+.stat-box.stat-box-blue{
+	border-bottom-color:#009dd1;
+	color:#009dd1;
+}
+.stat-box.stat-box-green{
+	border-bottom-color:#3bb92d;
+	color:#3bb92d;
+}
+.stat-box.stat-box-purple{
+	border-bottom-color:#551a8b;
+	color:#551a8b;
+}
+.stat-box.stat-box-orange{
+	border-bottom-color:#cc8400;
+	color:#cc8400;
+}
+.stat-box.stat-box-inactive{
+	opacity:.4;
+}
+/* EO Card */
+/*--------------------
+# @Button
+--------------------*/
+.btn{
+	min-width:80px;
+	display:inline-block;
+	text-align:center;
+	max-width:100%;
+	padding:8px 0;
+	border-radius:5px;
+	transition:.4s;
+}
+.btn.btn-longer{
+	min-width:100px;
+}
+.btn-no-fill{
+	background-color:transparent;
+	border:1px solid #adafb1;
+	border-radius:5px;
+	width:80px;
+}
+.btn-gray{
+	background-color:#b8b8b8;
+	color:#fff;
+}
+.btn-green{
+	background-color:#3bb92d;
+	color:#fff;
+}
+.btn-blue{
+	background-color:#009dd1;
+	color:#fff;
+}
+.btn-green{
+	background-color:#3bb92d;
+	color:#fff;
+}
+.btn-purple{
+	background-color:#551a8b;
+	color:#fff;
+}
+.btn-orange{
+	background-color:#cc8400;
+	color:#fff;
+}
+.btnhvr-b-blue:hover{
+	border-color:#009dd1;
+}
+/* EO Buttons */
+.inactive{
+	opacity:.4;
+}
+.hvr-shadow:hover{
+	-webkit-box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+	-moz-box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+	box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+}
+/*--------------------------------------------------------------
+# @Main Content
+--------------------------------------------------------------*/
+/*------------------------------------------
+# @For Fixed Header
+------------------------------------------*/
+/*** Ticketing Pages ***/
+/* First Height of the content-header is required on .fixed-header */
+#ticketing-page #main-content.fixed-header > #content-header{
+	height:217px;
+} 
+#ticketing-page #main-content.fixed-header > #content-body{
+	height:calc(100% - 130px); /* #content-header height plus 20 */
+	overflow-y:auto;
+}
+/*--------------------------------------------------------------
+# @Page - Accounting
+--------------------------------------------------------------*/
+/*----------------------------------
+# @Top Info
+----------------------------------*/
+.top-info .bb-gray.br-gray{
+	-moz-box-shadow:10px 10px 5px #222;
+	/* -webkit-box-shadow:10px 10px 5px #222; */
+	box-shadow:1px 1px 12px #dadada;
+}
+/* View Last X Hours Dropdown*/
+.sort-time{
+	width:160px;
+	display:inline-block;
+	margin-left:20px;
+	border:#cbc9c9 solid 1px;
+	font-size:13px;
+	padding:0px 0px 0px 5px;
+	height:25px;
+	border-radius:5px;
+}
+/* Action Buttons for tickets */
+.btn-action{
+	background-color:transparent;
+	border:1px solid #adafb1;
+	border-radius:5px;
+	width:80px;
+	font-size:11px;
+	pointer-events:none;
+	opacity:.3;
+	padding:5px;
+	color:#949799;
+}
+.btn-action.active{
+	opacity:1;
+	pointer-events:auto;
+}
+.btn-action:hover{
+	border-color:#009dd1;
+	-webkit-box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+	-moz-box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+	box-shadow:5px 5px 15px 0px rgba(218,218,218,.75);
+}
+.btn-action-blue{
+	border-color:#009cd2;
+	background-color:#009cd2;
+	color:#fff;
+}
+/*----------------------------------
+# @Tickets
+----------------------------------*/
+.ticket-list.tab-pane{
+	padding:15px 20px 0;
+	overflow:auto;
+	height:100%;
+}
+.ticket-module.ticket-module-filters{
+	border:none;
+	box-shadow:none;
+	color:#949799;
+	font-size:80%;
+	padding:0 30px 0 20px;
+}
+.ticket-module.ticket-module-filters .cell{
+	font-size:11px;
+}
+.ticket-module.ticket-module-filters .cell:not(.cell-filter){
+	padding-top:4px;
+	padding-bottom:1px;
+	border:1px solid transparent;
+	border-radius:5px;
+}
+.ticket-module.ticket-module-filters .cell-filter{
+	text-align:left;
+}
+.ticket-module.ticket-module-filters .cell-filter a{
+	border:1px solid transparent;
+	border-radius:5px;
+	padding-top:4px;
+	padding-bottom:6px;
+	text-align:center;
+	display:inline-block;
+	width:100%;
+	transition:.4s;
+}
+/* Per Cell-filter button widths */
+.ticket-module.ticket-module-filters .cell-email.cell-filter a,
+.ticket-module.ticket-module-filters .cell-date.cell-filter a{
+	max-width:80px;
+}
+.ticket-module.ticket-module-filters .cell-question.cell-filter a,
+.ticket-module.ticket-module-filters .cell-updated.cell-filter a{
+	max-width:90px;
+}
+.ticket-module.ticket-module-filters .cell-status.cell-filter{
+	text-align:center;
+}
+.ticket-module.ticket-module-filters .cell-status.cell-filter a{
+	max-width:80px;
+}
+/* Per module filter cell */
+.ticket-module.ticket-module-filters .cell-question{
+	padding-left:0;
+}
+.ticket-module.ticket-module-filters .cell-updated{
+	padding-left:0;
+}
+.ticket-module.ticket-module-filters .cell-updated{
+	padding-left:0;
+	padding-right:0;
+}
+.ticket-module.ticket-module-filters .cell-status{
+	text-align:left;
+}
+/* EO Per Cell */
+.ticket-module.ticket-module-filters .cell-filter a:hover,
+.ticket-module.ticket-module-filters .cell-filter a.filtered{
+	border:1px solid #2a94d0;
+	color:#2a94d0;
+}
+.ticket-module.ticket-module-filters .cell-filter i{
+	font-size:16px;
+	opacity:0;
+	transition:.4s;
+	color:#2a94d0;
+}
+.ticket-module.ticket-module-filters .cell-filter a:hover i,
+.ticket-module.ticket-module-filters .cell-filter a.filtered i{
+	opacity:1;
+}
+.ticket-module.ticket-module-filters .cell-filter *{
+	vertical-align:middle;
+}
+.ticket-module{
+	display:table;
+	table-layout:fixed;
+	border-radius:5px;
+	border:1px solid #c0bebe;
+	margin-bottom:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	width:100%;
+	position:relative;
+	-webkit-box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	-moz-box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	box-shadow:0px 0px 13px -2px rgba(219,219,219,1);
+	transition:.4s;
+}
+.ticket-module:hover, .ticket-module.active{
+	border-color:#009dd1;
+}
+/* Ticket Columns/Cells */
+.cell{
+	min-height:1px;
+	vertical-align:middle;
+	display:table-cell;
+	word-wrap:break-word;
+	padding-left:7px;
+	padding-right:7px;
+}
+/* Per Columns/Cells */
+.cell-check{
+	width:3.8%;
+	text-align:center;
+}
+.ticket-link{
+	display:block;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:3.8%;
+	width:82.4%; /* Give space to cell-check and cell-status */
+}
+.cell-icon{
+	width:7.5%;
+	text-align:center;
+	padding-left:0;
+	padding-right:0;
+}
+.cell-icon img{
+	width:100%;
+	max-width:60px;
+}
+.cell-email{
+	width:16% 
+}
+.cell-email .email-address{
+	font-size:12px;
+}
+.cell-email .ticket-code{
+	font-size:13px;
+	font-weight:600;
+	opacity:.8;
+}
+.cell-question{
+	width:38%; 
+	font-size:10px;
+}
+.cell-date{
+	width:10.8%;
+	font-size:11px;
+}
+.cell-date:not(.cell-filter),
+.cell-updated:not(.cell-filter){
+	font-weight:600;
+}
+.cell-date:not(.cell-filter),
+.cell-updated:not(.cell-filter),
+.cell-question:not(.cell-filter){
+	color:#333;
+}
+.cell-updated{
+	width:10.8%;
+	font-size:11px;
+}
+.cell-status{
+	width:15.6%;
+	text-align:center;
+}
+.btn-ticket-status{
+	min-width:80px;
+	display:inline-block;
+	text-align:center;
+	max-width:100%;
+	padding:8px 0;
+	border-radius:5px;
+	transition:.4s;
+	font-size:11px;
+	font-weight:600;
+	text-transform:uppercase;
+	vertical-align:middle;
+}
+.status-arrow{
+	color:#939191;
+	margin-left:5px;
+	vertical-align:middle;
+}
+.btn-loading{
+	font-size:12px;
+	font-weight:700;
+}
+/***** EO Tickets *****/
+/*-----------------------------------------------------------------------------------------------------------
+# @Responsive - For Ticket List Screen
+-----------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------
+# @Small Screens = 800px to 1200px
+------------------------------------------------------*/
+@media only screen and (max-width:1000px){
+	/*------------------------------------------
+	# @Make the cell-status from ticketing module
+	button smaller, to avoid line breaking
+	------------------------------------------*/
+	.btn-ticket-status{
+		width:75%;
+		min-width:0;
+		font-size:10px;
+	}
+	.status-arrow{
+		font-size:19px;
+	}
+}
+@media only screen and (max-width:875px){
+	/*------------------------------------------
+	# @Avoid Breaking Lines on the ticket table
+	on smaller screens
+	------------------------------------------*/
+	.ticket-link{
+		width:80.4%; /* Give space to cell-check and cell-status */
+	}
+	.cell-email{
+		width:25%;
+	}
+	.cell-updated,
+	.cell-date{
+		width:11.8%;
+	}
+	.cell-status{
+		width:16.6%;
+	}
+}
+/*-----------------------------------------------------------------------------------------------------------
+# @Customer Service Ticket Page
+-----------------------------------------------------------------------------------------------------------*/
+/*--------------- @Header ---------------*/
+#customer-service-ticket .top-header .mt-1{
+	margin-top:10px !important;
+}
+#customer-service-ticket .breadcrumbs .btn-ticket-status{
+	width:80px;
+	padding-top:8px;
+	padding-bottom:8px;
+	color:#fff !important;
+	text-decoration:none !important;
+}
+.btn-sub-ticket{
+	width:175px;
+	font-size:12px;
+	font-weight:700;
+	padding:6px 0;
+}
+/*** Fixed Header ***/
+#customer-service-ticket #main-content.fixed-header > #content-header{
+	height:138px;
+} 
+#customer-service-ticket #main-content.fixed-header > #content-body{
+	height:calc(100% - 158px); /* #content-header height plus 20 */
+}
+/* Then select an element to use an overflow auto on */
+#customer-service-ticket #main-content.fixed-header .tab-pane{
+	height:100%;
+	overflow:auto;
+}
+/*--------------- @Modal - Form ---------------*/
+.modal + .modal .modal-dialog{
+	margin-top:50px;
+}
+.modal-header,
+.modal-footer{
+	padding:20px;
+}
+.modal-body{
+	padding:15px 20px;
+}
+.modal-header{
+	padding-bottom:0;
+	border-bottom:0;
+}
+.modal-footer{
+	padding-top:0;
+	border-top:none;
+}
+.modal-title{
+	font-size:15px;
+	color:#919191;
+}
+.modal-form .form-group{
+	margin-bottom:8px;
+}
+.modal-form label,
+.modal-form input,
+.modal-form button,
+.modal-form select,
+.modal-form span.btn{
+	font-size:11px !important;
+}
+.modal-form .close{
+	font-size:1.5rem !important;
+	width:auto !important;
+}
+.modal-form input[type="text"],
+.modal-form select{
+	max-width:280px;
+}
+/* Next/Submit Button */
+.modal-form span.btn-next-modal,
+.modal-form input[type="submit"]{
+	width:115px;
+}
+/* Close Button */
+.modal-form span.btn-close{
+	width:73px;
+	background-color:transparent;
+	border-color:#aaa;
+}
+.modal-form span.btn-close:hover{
+	border-color:#23a0d4;
+	background-color:#23a0d4;
+	color:#fff;
+}
+/* Form LABELS */
+.modal-form label{
+	font-weight:600;
+	margin-bottom:7px;
+	opacity:.45;
+}
+.modal-form input[type="text"], .modal-form select{
+	font-weight:800;
+	border-color:#c4c2c2;
+}
+.modal-form textarea{
+	min-height:100px;
+}
+.modal-form .modal input:not([type="submit"]),
+.modal-form select.form-control:not([size]):not([multiple]){
+	height:25px;
+}
+.modal-form select.form-control:not([size]):not([multiple]){ 
+	padding-top:0;
+	padding-bottom:0;
+}
+button[data-dismiss="modal"]{
+	width:80px;
+}
+/*--------------- @Top Info ---------------*/
+/* Ticket & Private Note - Tab */
+.nav-pills .nav-link{
+	opacity:.4;
+	color:#000;
+	border-radius:0;
+	font-size:15px;
+	font-weight:800;
+	padding:0 0 2px 0;
+	margin-right:15px;
+}
+.nav-pills .nav-link.active{
+	border-bottom:#d8006f solid 2px;
+	background-color:transparent;
+	color:#000;
+	opacity:1;
+}
+.nav-pills .nav-link.active,
+.nav-pills .nav-link.active:focus,
+.nav-pills .nav-link.active:hover{
+	background-color:transparent;
+	color:#000;
+}
+/* Priority Setting */
+ul.ticket-priority{
+	position:relative;
+	display:inline-block;
+	padding-left:45px;
+	padding-right:15px;
+	cursor:pointer;
+	text-align:left;
+	min-width:148.5px;
+}
+ul.ticket-priority:before,
+ul.ticket-priority:after{
+	position:absolute;
+	top:0;
+	left:10px;
+}
+ul.ticket-priority:before{
+	content:"";
+	display:block;
+	width:19px;
+	height:19px;
+	border-radius:50%;
+	border:1px solid;
+	transition:.1s;
+}
+ul.ticket-priority ul span,
+ul.ticket-priority > li > span{
+	font-size:14px;
+}
+ul.ticket-priority > li > span{
+	font-weight:700;
+}
+ul.ticket-priority.higprio > li > span{
+	color:#cc393f;
+}
+ul.ticket-priority.norprio > li > span{
+	color:#808080;
+}
+ul.ticket-priority.lowprio > li > span{
+	color:#59d8fd;
+}
+/* Big Bullet Color and Arrow */
+ul.ticket-priority.higprio:before{
+	background-color:#cc393f;
+	border-color:#cc393f;
+}
+ul.ticket-priority.norprio:before{
+	border-color:#808080;
+	background-color:transparent;
+}
+ul.ticket-priority.lowprio:before{
+	border-color:#59d8fd;
+	background-color:#59d8fd;
+}
+ul.ticket-priority:after{
+	content:"\f107";
+	font-family:FontAwesome;
+	width:19px;
+	height:19px;
+	text-align:center;
+	font-size:19px;
+	opacity:0;
+	transition:.4s;
+}
+ul.ticket-priority.active:after, ul.ticket-priority:hover::after{
+	opacity:1;
+}
+ul.ticket-priority ul{
+	position:absolute;
+	width:100%;
+	left:0;
+	background-color:#fff;
+	font-size:12px;
+	border:1px solid #c0bebe;
+	margin-top:7px;
+	opacity:0;
+	pointer-events:none;
+	transition:.4s
+}
+ul.ticket-priority.active ul{
+	opacity:1;
+	pointer-events:auto;
+}
+ul.ticket-priority ul li{
+	position:relative;
+	text-align:left;
+	transition:.2s;
+}
+ul.ticket-priority ul:before{
+	content:"";
+	display:block;
+	width:1px;
+	height:85%;
+	background-color:#bcbcbc;
+	position:absolute;
+	top:50%;
+	transform:translateY(-50%);
+	left:38px;
+	z-index:999;
+}
+ul.ticket-priority ul li span{
+	padding:10px 10px 10px 13px;
+	margin-left:35px;
+	display:block;
+}
+ul.ticket-priority ul li:before{
+	content:"";
+	display:block;
+	width:18px;
+	height:18px;
+	border-radius:50%;
+	border:1px solid;
+	vertical-align:middle;
+	position:absolute;
+	left:10px;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+	transform:translateY(-50%);
+}
+/* Item Hover */
+ul.ticket-priority li:hover{
+	background-color:#f5f5f5;
+}
+/* Item Colored Bullet */
+ul.ticket-priority li.higprio:before{
+	background-color:#cc393f;
+	border-color:#cc393f;
+	transition:.2s;
+}
+ul.ticket-priority li.norprio:before{
+	background-color:#808080;
+	border-color:#808080;
+	transition:.2s;
+}
+ul.ticket-priority li.lowprio:before{
+	background-color:#59d8fd;
+	border-color:#59d8fd;
+	transition:.2s;
+}
+/*--------------- @Main Content ---------------*/
+/***** #Ticket / Conversation *****/
+.message{
+	background-color:#f1f1f1;
+	padding:15px 0 40px;
+	color:#000;
+	border:1px solid #c0bebe;
+	margin-bottom:15px;
+	border-radius:5px;
+	width:calc(100% - 130px);
+	-webkit-box-shadow:0px 0px 13px -2px rgb(204, 204, 204);
+	-moz-box-shadow:0px 0px 13px -2px rgb(204, 204, 204);
+	box-shadow:0px 0px 13px -2px rgb(204, 204, 204);
+}
+.message.message-support{
+	background-color:#009cd2;
+	color:#fff;
+	border:1px solid #c7c5c5;
+	margin-left:auto;
+}
+/*** User/Message Info ***/
+.avatar{
+	margin-bottom:20px;
+}
+.avatar-img,
+.user-info{
+	display:inline-block;
+	vertical-align:middle;
+}
+.avatar-img{
+	width:50px;
+	height:auto;
+	width:40px;
+	height:40px;
+	border:#fff solid 2px;
+	border-radius:50%;
+	margin-left:10px;
+	-webkit-box-shadow:0px 5px 5px 0px rgba(0,0,0,0.45);
+	-moz-box-shadow:0px 5px 5px 0px rgba(0,0,0,0.45);
+	box-shadow:0px 5px 5px 0px rgba(0,0,0,0.45);
+}
+.user-info{
+	margin-left:15px;
+}
+.user-name{
+	margin-bottom:0;
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:2px;
+}
+.time-sent{
+	opacity:.7;
+	font-weight:600;
+	font-size:13px;
+}
+/* Message Content */
+.message-content{
+	padding:0 40px;
+	margin-left:30px;
+	border-left:1px solid #c4c4c4;
+}
+.message-support .message-content{
+	border-left-color:#007faa;
+}
+.message-content p{
+	margin-bottom:20px;
+}
+.message-content p:last-child{
+	margin-bottom:0;
+}
+/* Response */
+.message.message-response{
+	background-color:transparent;
+	margin-left:auto;
+	border:none;
+	box-shadow:none;
+	padding-bottom:0;
+	margin-bottom:0;
+}
+.message.message-response .message-content{
+	border-left:none;
+	padding-right:0;
+}
+.message textarea{
+	width:100%;
+	min-height:190px;
+	border-radius:5px;
+}
+#resolved{
+	margin-right:10px;
+}
+#resolved, #resolved + label{
+	margin-right:10px;
+	vertical-align:middle;
+}
+.response-option .btn-response-submit, .response-option .btn-close{
+	width:50%;
+	padding:13px 10px;
+	font-weight:700;
+	font-size:18px;
+	float: right;
+}
+.response-option .btn-close{
+	float:left;
+	background-color:#cc8400;
+	border-color:#cc8400;
+}
+/***** #Private Note *****/
+.private-note{
+	padding-right:26px;
+	margin-bottom:20px;
+}
+.private-note-user{
+	width:70px;
+	float:left;
+	text-align:center;
+}
+.private-note-user img{
+	margin-bottom:34px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.private-note-info{
+	width:calc(100% - 70px);
+	float:left;
+}
+.private-note-top{
+	height:43px;
+}
+/* Private Note Details */
+.private-note-details{
+	border:1px solid #c0bebe;
+	border-radius:5px;
+	padding:20px;
+}
+.private-note-details .time{
+	opacity:.5;
+}
+.note{
+	margin-bottom:45px;
+}
+.note:last-child{
+	margin-bottom:15px;
+}
+.note p{
+	margin-bottom:0;
+}
+.note input{
+	margin-bottom:0;
+	border:1px solid #ddd;
+	width:40%;
+}
+/*--------------------------------------------------------------
+# @Responsive for Ticket Screen
+--------------------------------------------------------------*/
+@media only screen and ( max-width:900px ){
+	#customer-service-ticket .top-info #action-ticket{
+		width:60% !important;
+	}
+	#customer-service-ticket .top-info .ticket-tab{
+		width:40% !important;
+	}
+}
+@media only screen and ( max-width:850px ){
+	#resolved + label{
+		font-size:11px;
+	}
+	#customer-service-ticket .top-header .create-sub-ticket{
+		width:180px;
+	}
+}

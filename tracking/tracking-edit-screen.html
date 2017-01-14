@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html ng-app="astroBackend" ng-controller="mainCtrl">
+<head>
+	<link rel="icon" href="{{favIcon}}">
+	<title>Astrology Life</title>
+	<style>@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');</style>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link type="text/css" rel="stylesheet" href="../assets/css/bootstrap.4.0.min.css?1481227083" />
+	<link type="text/css" rel="stylesheet" href="../assets/css/backend/master.css?1483318539" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/backend/tracking.css">
+
+	<script type="text/javascript" src="../assets/js/jquery.min.js?1478726846"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.min.js?1478726846"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+	<script type="text/javascript" src="../assets/js/backend/js-content.js?1482525959"></script>
+	<script type="text/javascript" src="../assets/js/backend/ng-services.js?1483211320"></script>
+	<script type="text/javascript" src="../assets/js/angular-modal-service.js?1478727418"></script>
+	<script type="text/javascript" src="../assets/js/ui-bootstrap-tpls-2.2.0.min.js?1480027268"></script>
+</head>
+<body id="tracking-edit-page">
+	<div id="site-wrapper">
+		<aside id="main-sidebar" class="clearfix">
+			<div class="logo header-same-height">
+				<img src="../assets/img/backend/company-logo.png" alt="Astrology Life" />
+				<p class="page-title mb-0">TRACKING</p>
+			</div>
+			<!--- Nav Pages -->
+			<ul class="nav-vertical nav-pages">
+				<li>
+					<a href="" class="stats active">Stats</a>
+				</li>
+				<li>
+					<a href="/modcontent/index" class="content">Content</a>
+				</li>
+				<li>
+					<a href="" class="email">Email</a>
+				</li>
+				<li>
+					<a href="/modticketing/index" class="ticket">Tickets</a>
+				</li>
+				<li>
+					<a href="" class="staff">Staff</a>
+				</li>
+				<li>
+					<a href="" class="members">Members</a>
+				</li>
+			</ul>
+			<!--- Bottom Menu-->
+			<ul class="nav-vertical nav-pages bottom-menu">
+				<li>
+					<a href="" class="setting">Settings</a>
+				</li>
+				<li>
+					<a href="/internallogout" class="logout">Log Out</a>
+				</li>
+			</ul>
+			<!--- Sub Pages -->
+			<ul class="nav-vertical nav-sub-pages">
+				<li ng-class="menuItems[1]"><a href="" ng-click="menuItemClick(1)">Reporting</a></li>
+				<li ng-class="menuItems[2]" class="active"><a href="" ng-click="menuItemClick(2)">Offers</a></li>
+			</ul>
+		</aside> <!--- /#main-sidebar -->
+
+
+		<div id="main-content" class="fixed-header" ng-view>
+
+			<!--- Start Of Header -->
+			<header id="content-header" class="clearfix">
+				<div class="top-header clearfix pxx-20 header-same-height">
+					<div class="breadcrumbs mt-1 smaller">
+						<span><a href="">Tracking</a></span>
+						<span class="breadcrumbs-divider">/</span>
+						<span><a href="">Offers</a></span>
+					</div>
+
+					<div class="search-field right ptx-5">
+						<input type="text" class="form-control search-box" placeholder="Search">
+						<i class="fa fa-search y-50 search-icon" aria-hidden="true"></i>
+					</div>
+				</div>
+
+				<div class="top-info sort-row new-campaign-row pr-huge">
+					<div class="br-gray bb-gray">
+						<div class="row-mb ptx-10 pxx-20">
+							<div class="ticket-tab left w-50">
+								<ul class="nav nav-pills" role="tablist">
+									<li class="nav-item"><a data-toggle="tab" class="nav-link active" href="#offer-info">Offer Info</a></li>
+									<li class="nav-item"><a data-toggle="tab" class="nav-link" href="#private-note">Private Note</a></li>
+								</ul>
+							</div>
+
+							<div id="action-campaign" class="right w-50 align-right mbx-10 row-mb">
+								<div href="#" class="btn btn-action active pxx-20">Cancel</div>
+								<div href="#" class="btn btn-action btn-action-blue active pxx-20">Save</div>
+							</div>
+
+							<div class="edit-offer smaller clear">
+								<div class="row-mb">
+									<div class="offer-date mbx-10 clearfix">
+										<p class="bold mbx-5">Offer Date</p>
+
+										<!--- Month -->
+										<ul class="sort-by custom-dropdown grey-arrow has-active dropdown-month" data-active="1">
+											<li>
+												<a  class="custom-dropdown-dynamic" href="#">December</a>
+												<ul>
+													<li data-value="1"><a href="#">January</a></li>
+													<li data-value="2"><a href="#">February</a></li>
+													<li data-value="3"><a href="#">March</a></li>
+													<li data-value="4"><a href="#">April</a></li>
+													<li data-value="5"><a href="#">May</a></li>
+													<li data-value="6"><a href="#">June</a></li>
+													<li data-value="7"><a href="#">July</a></li>
+													<li data-value="8"><a href="#">August</a></li>
+													<li data-value="9"><a href="#">September</a></li>
+													<li data-value="10"><a href="#">October</a></li>
+													<li data-value="11"><a href="#">November</a></li>
+													<li class="active" data-value="12"><a href="#">December</a></li>
+												</ul>
+											</li>
+										</ul>
+
+										<!--- Day -->
+										<ul class="sort-by custom-dropdown grey-arrow has-active dropdown-day" data-active="1">
+											<li>
+												<a  class="custom-dropdown-dynamic" href="#">1</a>
+												<ul>
+													<li class="active" data-value="1"><a href="#">1</a></li>
+													<li data-value="2"><a href="#">2</a></li>
+													<li data-value="3"><a href="#">3</a></li>
+													<li data-value="4"><a href="#">4</a></li>
+													<li data-value="5"><a href="#">5</a></li>
+													<li data-value="6"><a href="#">6</a></li>
+												</ul>
+											</li>
+										</ul>
+
+										<!--- Year -->
+										<ul class="sort-by custom-dropdown grey-arrow has-active dropdown-year" data-active="1">
+											<li>
+												<a  class="custom-dropdown-dynamic" href="#">2017</a>
+												<ul>
+													<li class="active" data-value="1"><a href="#">2017</a></li>
+													<li data-value="2"><a href="#">2016</a></li>
+													<li data-value="4"><a href="#">2015</a></li>
+												</ul>
+											</li>
+										</ul>
+									</div> <!--- Offer Date -->
+
+									<div class="offer-name mbx-10">
+										<p class="bold mbx-5">Offer Name</p>
+										<input class="form-control bold" type="text">
+									</div>
+
+									<div class="offer-category mbx-10">
+										<!--- Year -->
+										<p class="bold mbx-5">Offer Category</p>
+										<ul class="sort-by custom-dropdown grey-arrow has-active w-100" data-active="1">
+											<li>
+												<a  class="custom-dropdown-dynamic" href="#">All</a>
+												<ul>
+													<li class="active" data-value="1"><a href="#">All</a></li>
+													<li data-value="2"><a href="#">Option 2</a></li>
+													<li data-value="4"><a href="#">Option 3</a></li>
+													<li data-value="3"><a href="#">Last Option</a></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+
+									<div class="traffic-source mbx-10">
+										<p class="bold mbx-5">Traffic Source</p>
+										<input class="form-control bold" type="text">
+									</div>
+								</div>
+							</div>
+
+							<div class="ticket-module-filters ticket-module clear plx-10">
+								<div class="tbl-row">
+									<div class="cell cell-info">
+										<span class="bold">Offer Name</span>
+									</div>
+									<div class="cell cell-views small">
+										<a href="#"><span>Views</span></a>
+									</div>
+									<div class="cell cell-clicks">
+										<a href="#"><span>Clicks</span></a>
+									</div>
+									<div class="cell cell-ctr">
+										<a href="#"><span>CTR</span></i></a>
+									</div>
+									<div class="cell cell-conversions">
+										<a href="#"><span>Conversions</span></a>
+									</div>
+									<div class="cell cell-cvr">
+										<a href="#"><span>CVR</span></a>
+									</div>
+									<div class="cell cell-filter cell-revenue">
+										<a href="#"><span>Revenue</span> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									</div>
+									<div class="cell cell-filter cell-buttons">
+									</div>
+								</div>
+							</div> <!--- /.ticket-module -->
+						</div> <!--- /.row-mb -->
+					</div> <!--- /.bb-gray .br-gray -->
+				</div> <!--- /#top-info -->
+			</header><!--- /#content-header -->
+			<!--- EO Header -->
+
+
+	
+			<!--- Start Of Body (Body Page) -->
+			<div id="content-body" class="edit-offer-tab">
+				<div class="tab-content h-100">
+					<!--- START OF the Variants -->
+					<div id="offer-info" class="tab-pane fade in active" role="tabpanel">
+						<div class="variant-list">
+							<div class="sub-table variant has-disable offer" link="tracking-edit-screen.html">
+								<table>
+									<tr>
+										<td class="cell cell-info">
+											<span class="campaign-id">Variant #1</span>
+											<!-- Use this template when adding rename function -->
+											<div class="campaign-name-info">
+												<span class="campaign-name">Lorem Ipsum</span>
+												<img class="campaign-rename-icon" src="../assets/img/backend/icons/icon-rename.png" />	
+											</div>
+											<div class="campaign-edit-info hide">
+												<input type="text" class="campaign-edit">
+												<!-- NOTE: Replace with a save/check icon, as required -->
+												<img class="campaign-save-icon" src="../assets/img/backend/icons/icon-rename.png" />
+											</div>
+											<!-- end rename function -->
+											<span class="campaign-date-info overwidth">http://8f6d421190d33285840-0242b10478580b4d3ed39aaa9294e29a1.r89.cf2.rackcdn.com</span>
+										</td> <!--- /.cell-info -->
+
+										<td class="cell cell-views">
+											<span>20,000</span>
+										</td>
+
+										<td class="cell cell-clicks">
+											<span>15,287</span>
+										</td>
+
+										<td class="cell cell-ctr">
+											<span>10%</span>
+										</td>
+
+										<td class="cell cell-conversions">
+											<span>5,000</span>
+										</td>
+
+										<td class="cell cell-cvr">
+											<span>5%</span>
+										</td>
+
+										<td class="cell cell-revenue">
+											<span>$20,000.00</span>
+										</td>
+
+										<td class="cell cell-buttons">
+											<a href="#" class="btn btn-toggle no-hover"></a>
+											<div class="btn btn-no-fill btn-more-options no-hover has-popup">
+													<span class="btn-more-arrow"><img src="../assets/img/backend/icons/icon-circled-arrow-down.png"></span>
+													<!--- popup -->
+													<div class="popup popup-more">
+														<a href="#">Duplicate</a>
+														<a href="#" data-toggle="modal" data-target="#deleteModal1">Delete</a>
+													</div>
+												</div><!--- Don't 
+												delete this comment
+										 --><a href="#" class="btn btn-no-fill btn-more"><span>More</span></a>
+										</td> <!--- /.cell-buttons -->
+									</tr>
+								</table> 
+							</div> <!--- row-sub-campaign-email email -->
+
+							<!--- START OF DUPLICATE -->
+							<div class="sub-table variant has-disable offer" link="tracking-edit-screen.html">
+								<table>
+									<tr>
+										<td class="cell cell-info">
+											<span class="campaign-id">Variant #2</span>
+											<!-- Use this template when adding rename function -->
+											<div class="campaign-name-info">
+												<span class="campaign-name">Lorem Ipsum</span>
+												<img class="campaign-rename-icon" src="../assets/img/backend/icons/icon-rename.png" />	
+											</div>
+											<div class="campaign-edit-info hide">
+												<input type="text" class="campaign-edit">
+												<!-- NOTE: Replace with a save/check icon, as required -->
+												<img class="campaign-save-icon" src="../assets/img/backend/icons/icon-rename.png" />
+											</div>
+											<!-- end rename function -->
+											<span class="campaign-date-info overwidth">http://8f6d421190d33285840-0242b10478580b4d3ed39aaa9294e29a1.r89.cf2.rackcdn.com</span>
+										</td> <!--- /.cell-info -->
+
+										<td class="cell cell-views">
+											<span>20,000</span>
+										</td>
+
+										<td class="cell cell-clicks">
+											<span>15,287</span>
+										</td>
+
+										<td class="cell cell-ctr">
+											<span>10%</span>
+										</td>
+
+										<td class="cell cell-conversions">
+											<span>5,000</span>
+										</td>
+
+										<td class="cell cell-cvr">
+											<span>5%</span>
+										</td>
+
+										<td class="cell cell-revenue">
+											<span>$20,000.00</span>
+										</td>
+
+										<td class="cell cell-buttons">
+											<a href="#" class="btn btn-toggle no-hover"></a>
+											<div class="btn btn-no-fill btn-more-options no-hover has-popup">
+													<span class="btn-more-arrow"><img src="../assets/img/backend/icons/icon-circled-arrow-down.png"></span>
+													<!--- popup -->
+													<div class="popup popup-more">
+														<a href="#">Duplicate</a>
+														<a href="#" data-toggle="modal" data-target="#deleteModal1">Delete</a>
+													</div>
+												</div><!--- Don't 
+												delete this comment
+										 --><a href="#" class="btn btn-no-fill btn-more"><span>More</span></a>
+										</td> <!--- /.cell-buttons -->
+									</tr>
+								</table> 
+							</div> <!--- row-sub-campaign-email email -->
+							<div class="sub-table variant has-disable offer" link="tracking-edit-screen.html">
+								<table>
+									<tr>
+										<td class="cell cell-info">
+											<span class="campaign-id">Variant #3</span>
+											<!-- Use this template when adding rename function -->
+											<div class="campaign-name-info">
+												<span class="campaign-name">Lorem Ipsum</span>
+												<img class="campaign-rename-icon" src="../assets/img/backend/icons/icon-rename.png" />	
+											</div>
+											<div class="campaign-edit-info hide">
+												<input type="text" class="campaign-edit">
+												<!-- NOTE: Replace with a save/check icon, as required -->
+												<img class="campaign-save-icon" src="../assets/img/backend/icons/icon-rename.png" />
+											</div>
+											<!-- end rename function -->
+											<span class="campaign-date-info overwidth">http://8f6d421190d33285840-0242b10478580b4d3ed39aaa9294e29a1.r89.cf2.rackcdn.com</span>
+										</td> <!--- /.cell-info -->
+
+										<td class="cell cell-views">
+											<span>20,000</span>
+										</td>
+
+										<td class="cell cell-clicks">
+											<span>15,287</span>
+										</td>
+
+										<td class="cell cell-ctr">
+											<span>10%</span>
+										</td>
+
+										<td class="cell cell-conversions">
+											<span>5,000</span>
+										</td>
+
+										<td class="cell cell-cvr">
+											<span>5%</span>
+										</td>
+
+										<td class="cell cell-revenue">
+											<span>$20,000.00</span>
+										</td>
+
+										<td class="cell cell-buttons">
+											<a href="#" class="btn btn-toggle no-hover"></a>
+											<div class="btn btn-no-fill btn-more-options no-hover has-popup">
+													<span class="btn-more-arrow"><img src="../assets/img/backend/icons/icon-circled-arrow-down.png"></span>
+													<!--- popup -->
+													<div class="popup popup-more">
+														<a href="#">Duplicate</a>
+														<a href="#" data-toggle="modal" data-target="#deleteModal1">Delete</a>
+													</div>
+												</div><!--- Don't 
+												delete this comment
+										 --><a href="#" class="btn btn-no-fill btn-more"><span>More</span></a>
+										</td> <!--- /.cell-buttons -->
+									</tr>
+								</table> 
+							</div> <!--- row-sub-campaign-email email -->
+							<div class="sub-table variant has-disable offer" link="tracking-edit-screen.html">
+								<table>
+									<tr>
+										<td class="cell cell-info">
+											<span class="campaign-id">Variant #4</span>
+											<!-- Use this template when adding rename function -->
+											<div class="campaign-name-info">
+												<span class="campaign-name">Lorem Ipsum</span>
+												<img class="campaign-rename-icon" src="../assets/img/backend/icons/icon-rename.png" />	
+											</div>
+											<div class="campaign-edit-info hide">
+												<input type="text" class="campaign-edit">
+												<!-- NOTE: Replace with a save/check icon, as required -->
+												<img class="campaign-save-icon" src="../assets/img/backend/icons/icon-rename.png" />
+											</div>
+											<!-- end rename function -->
+											<span class="campaign-date-info overwidth">http://8f6d421190d33285840-0242b10478580b4d3ed39aaa9294e29a1.r89.cf2.rackcdn.com</span>
+										</td> <!--- /.cell-info -->
+
+										<td class="cell cell-views">
+											<span>20,000</span>
+										</td>
+
+										<td class="cell cell-clicks">
+											<span>15,287</span>
+										</td>
+
+										<td class="cell cell-ctr">
+											<span>10%</span>
+										</td>
+
+										<td class="cell cell-conversions">
+											<span>5,000</span>
+										</td>
+
+										<td class="cell cell-cvr">
+											<span>5%</span>
+										</td>
+
+										<td class="cell cell-revenue">
+											<span>$20,000.00</span>
+										</td>
+
+										<td class="cell cell-buttons">
+											<a href="#" class="btn btn-toggle no-hover"></a>
+											<div class="btn btn-no-fill btn-more-options no-hover has-popup">
+													<span class="btn-more-arrow"><img src="../assets/img/backend/icons/icon-circled-arrow-down.png"></span>
+													<!--- popup -->
+													<div class="popup popup-more">
+														<a href="#">Duplicate</a>
+														<a href="#" data-toggle="modal" data-target="#deleteModal1">Delete</a>
+													</div>
+												</div><!--- Don't 
+												delete this comment
+										 --><a href="#" class="btn btn-no-fill btn-more"><span>More</span></a>
+										</td> <!--- /.cell-buttons -->
+									</tr>
+								</table> 
+							</div> <!--- row-sub-campaign-email email -->
+							<!--- END OF DUPLICATE -->
+						</div><!--- variant list -->
+
+						<div class="add-variant mb-1">
+							<a href="#" class="btn-add-variant"><span>Add Variant</span></a>
+						</div>
+
+						<div class="link-format mb-1">
+							<!--- Year -->
+							<p class="bold mbx-5 smaller">Link Format</p>
+							<ul class="sort-by custom-dropdown grey-arrow has-active w-100 mrx-5" data-active="1">
+								<li>
+									<a  class="custom-dropdown-dynamic" href="#">All</a>
+									<ul>
+										<li class="active" data-value="1"><a href="#">All</a></li>
+										<li data-value="2"><a href="#">Option 2</a></li>
+										<li data-value="4"><a href="#">Option 3</a></li>
+										<li data-value="3"><a href="#">Last Option</a></li>
+									</ul>
+								</li>
+							</ul>
+							<a href="#" class="btn btn-action active w-auto">Generate Link</a>
+						</div>
+
+						<div class="offer-link mb-1">
+							<p class="bold mbx-5 smaller">Offer Link</p>
+							<input type="text" class="form-control bold">
+						</div>
+
+						<div class="test-type mb-1">
+							<span class="smaller bold">Test:</span>
+							<ul class="sort-by offer-type custom-dropdown has-active" data-active="1">
+								<li>
+									<a  class="custom-dropdown-dynamic" href="#">Multivariate</a>
+									<i class="fa fa-chevron-down"></i>
+									<ul>
+										<li class="active" data-value="1"><a href="#" slider-tab="multivariate">Multivariate</a></li>
+										<li data-value="2"><a href="#" slider-tab="multi-armed-bandlt">Multi-Armed Bandlt</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+
+						<div id="multivariate" class="slider w-100 clearfix mb-2">
+							<div class="variant-percentage" style="width: 25%;">1: 25%</div>
+							<div class="variant-percentage" style="width: 25%;">2: 25%</div>
+							<div class="variant-percentage" style="width: 25%;">3: 25%</div>
+							<div class="variant-percentage" style="width: 25%;">4: 25%</div>
+						</div>
+
+						<div id="multi-armed-bandlt" class="slider w-100 clearfix mb-2 hide">
+							<div class="variant-percentage" style="width: 12.5%;">1: 12.5%</div>
+							<div class="variant-percentage" style="width: 12.5%;">2: 12.5%</div>
+							<div class="variant-percentage" style="width: 12.5%;">3: 12.5%</div>
+							<div class="variant-percentage last" style="width: 12.5%;">4: 12.5%</div>
+							<div class="winning-percentage" style="width: 50%;">Winning Version: 50%</div>
+							<div class="scrubber"></div>
+						</div>
+
+					</div> <!--- END OF the Ticket (Conversation) tab -->
+
+					<!--- START OF List of open tickets -->
+					<div id="private-note" class="tab-pane fade in" role="tabpanel">
+						<div class="private-note clearfix">
+							<div class="private-note-user">
+								<img src="../assets/img/backend/icons/icon-clock.png">
+							</div> <!--- /.private-note-user -->
+
+							<div class="private-note-info">
+								<div class="private-note-top clearfix">
+									<div><span class="small valign-middle">Description</span></div>
+								</div> <!--- /.private-note-info -->
+
+								<div class="private-note-details mt-half">
+									<div class="note">
+										<p class="time">11/17/2016, 3:42 AM</p>
+										<p class="description">Submitted a reply and requested additional information from client</p>
+									</div>
+
+									<div class="note">
+										<p class="time">11/16/2016, 3:42 AM</p>
+										<p class="description">Client billing info updated</p>
+									</div>
+
+									<div class="note">
+										<p class="time">11/15/2016, 3:42 AM</p>
+										<p class="description">Received original request from the client</p>
+									</div>
+								</div>  <!--- /.private-note-details -->
+							</div>
+						</div> <!--- /.private-info -->
+					</div> <!--- /#private-note .tab -->
+				</div> <!--- /.tab-content -->
+			</div> <!--- /#content-body -->
+			<!--- EO Body (Body Page) -->
+
+		</div> <!--- /#main-content -->
+	</div> <!--- /#site-wrapper -->
+
+	<!--- Delete Modal 1 -->
+	<div class="modal fade delete-modal" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash-o"></i> <span class="smaller">Delete</span></h4>
+				</div>
+				<div class="modal-body">
+					<p>You are about to delete the sub-campaign <span class="delete-campaign-name bold">Life Map – Promos.</span></p>
+					<p>All four <span class="delete-email-quantity">(4)</span> associated emails will be deleted!</p>
+					<p>Are you sure? <span class="red">There is no undo!</span></p>
+					<br>
+					<form>
+						<p><label>Type DELETE to confirm.</label> <input type="text" class="delete-confirmation"></p>
+						<p class="align-center option-buttons delete-buttons"><button class="option-1" data-dismiss="modal">No</button> <button class="option-2">Yes</button></p>
+					</form>
+				</div>
+				</div>
+			</div>
+	</div> <!--- .delete-modal -->
+
+	<div class="notice-message"></div>
+
+	<!--- Scripts at the bottom for performance purposes -->
+	<script src="../assets/js/backend/jquery-3.1.1.min.js"></script> <!--- Jquery -->
+  	<script src="../assets/js/backend/bootstrap.min.js"></script>
+  	<script src="../assets/js/backend/custom.js"></script>
+
+  	<script type="text/javascript">
+  		$(document).ready(function() {
+  			//This case the top header has different heights per tab
+  			$('.nav-pills a').click(function() {
+  				if ( $(this).attr('href') == '#offer-info' ) {
+  					$('.edit-offer').css('max-height', '400px');
+  					$('#content-body').addClass('edit-offer-tab');
+  				}
+  				else {
+  					$('.edit-offer').css('max-height', '0');
+  					$('#content-body').removeClass('edit-offer-tab');
+  				}
+  				$('.edit-offer').css('overflow', 'hidden');
+  			});
+
+  			//Make the height transition animation possible
+  			$('.edit-offer .custom-dropdown').click(function() {
+  				$('.edit-offer').css('overflow', 'visible');
+  			});
+
+
+  			//Slider Tab
+  			$('.offer-type a[slider-tab]').click(function() {
+  				var activeSlider = $(this).attr('slider-tab');
+  				$('.slider').addClass('hide');
+  				$('#'+ activeSlider).removeClass('hide');
+  			});
+
+  			//Add Variant - Create Variant Form
+  			$('.btn-add-variant').click(function() {
+  				var variantCount = parseInt( $('.variant').length ) + 1;
+  				var variantForm = '<div class="create-variant has-disable offer sub-table variant"link=tracking-edit-screen.html><table><tr><td class="cell cell-variant-info"><span class=campaign-id>Variant #' + variantCount + '</span><div class=campaign-name-infos><input type="text" class="form-control create-variant-name bold" placeholder="New Variant Name"></div><span class="campaign-date-info overwidth"><input type="text" class="form-control create-variant-link h-short" placeholder="New link URL"></span><td class="cell cell-buttons"><div class="active btn btn-action pxx-20 create-variant-cancel">Cancel</div> <div class="active btn btn-action pxx-20 btn-action-blue create-variant-save">Save</div></table></div>';
+
+  				$( ".variant:last-child" ).after( variantForm );
+  			});
+
+  			//Cancel Button - Create Variant Form
+  			$(document).on('click', '.create-variant-cancel', function() {
+  				$(this).closest('.create-variant').remove();
+  			});
+
+  			//Save Button - Create Variant Form
+  			$(document).on('click', '.create-variant-save', function() {
+
+  				var variantName = $(this).closest('.create-variant').find('.create-variant-name').val();
+  				var variantLink = $(this).closest('.create-variant').find('.create-variant-link').val();
+  				var variantCount = $(this).closest('.create-variant').find('.campaign-id').text();
+
+  				var newVariant = '<td class="cell cell-info"><span class=campaign-id>' + variantCount + '</span><div class=campaign-name-info><span class=campaign-name>' + variantName + '</span> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-rename-icon></div><div class="campaign-edit-info hide"><input class=campaign-edit> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-save-icon></div><span class="campaign-date-info overwidth">' + variantLink + '</span><td class="cell cell-views"><span>0</span><td class="cell cell-clicks"><span>0</span><td class="cell cell-ctr"><span>0%</span><td class="cell cell-conversions"><span>0</span><td class="cell cell-cvr"><span>0%</span><td class="cell cell-revenue"><span>$0.00</span><td class="cell cell-buttons"><a href=# class="btn no-hover btn-toggle"></a><div class="btn btn-no-fill btn-more-options has-popup no-hover"><span class=btn-more-arrow><img src=../assets/img/backend/icons/icon-circled-arrow-down.png></span><div class="popup popup-more"><a href=#>Duplicate</a> <a href=# data-target=#deleteModal1 data-toggle=modal>Delete</a></div></div><a href=# class="btn btn-no-fill btn-more"><span>More</span></a>';
+
+  				$(this).closest('.create-variant').removeClass( 'create-variant' );
+  				$(this).closest('tr').html( newVariant );
+				$('.notice-message').append('<div class="campaign-created remove-on-click"><img src="../assets/img/backend/icons/icon-check.png" style="margin-right: 5px;"> <span>New Variant Created</span></div>');
+  			});
+
+  		});
+  	</script>
+
+</body>
+</html>
+v
