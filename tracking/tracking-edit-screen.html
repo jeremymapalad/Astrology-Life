@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" type="text/css" href="../assets/css/backend/tracking.css">
 
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 	<script type="text/javascript" src="../assets/js/jquery.min.js?1478726846"></script>
 	<script type="text/javascript" src="../assets/js/bootstrap.min.js?1478726846"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -504,19 +506,19 @@
 						</div>
 
 						<div id="multivariate" class="slider w-100 clearfix mb-2">
-							<div class="variant-percentage" style="width: 25%;">1: 25%</div>
-							<div class="variant-percentage" style="width: 25%;">2: 25%</div>
-							<div class="variant-percentage" style="width: 25%;">3: 25%</div>
-							<div class="variant-percentage" style="width: 25%;">4: 25%</div>
+							<div class="variant-percentage"><span class="percentage-label">1: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">2: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">3: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">4: </span><span class="percentage-content"></span></div>
 						</div>
 
 						<div id="multi-armed-bandlt" class="slider w-100 clearfix mb-2 hide">
-							<div class="variant-percentage" style="width: 12.5%;">1: 12.5%</div>
-							<div class="variant-percentage" style="width: 12.5%;">2: 12.5%</div>
-							<div class="variant-percentage" style="width: 12.5%;">3: 12.5%</div>
-							<div class="variant-percentage last" style="width: 12.5%;">4: 12.5%</div>
-							<div class="winning-percentage" style="width: 50%;">Winning Version: 50%</div>
-							<div class="scrubber"></div>
+							<div class="variant-percentage"><span class="percentage-label">1: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">2: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">3: </span><span class="percentage-content"></span></div>
+							<div class="variant-percentage"><span class="percentage-label">4: </span><span class="percentage-content"></span></div>
+							<div class="winning-percentage"><span class="winning-label"> Winning Version: </span><span class="winning-percentage-content"></span></div>
+							<div class="ui-slider-handle scrubber"></div>
 						</div>
 
 					</div> <!--- END OF the Ticket (Conversation) tab -->
@@ -587,66 +589,143 @@
 
 	<!--- Scripts at the bottom for performance purposes -->
 	<script src="../assets/js/backend/jquery-3.1.1.min.js"></script> <!--- Jquery -->
-  	<script src="../assets/js/backend/bootstrap.min.js"></script>
-  	<script src="../assets/js/backend/custom.js"></script>
+	<script src="../assets/js/backend/bootstrap.min.js"></script>
+	<script src="../assets/js/backend/custom.js"></script>
 
-  	<script type="text/javascript">
-  		$(document).ready(function() {
-  			//This case the top header has different heights per tab
-  			$('.nav-pills a').click(function() {
-  				if ( $(this).attr('href') == '#offer-info' ) {
-  					$('.edit-offer').css('max-height', '400px');
-  					$('#content-body').addClass('edit-offer-tab');
-  				}
-  				else {
-  					$('.edit-offer').css('max-height', '0');
-  					$('#content-body').removeClass('edit-offer-tab');
-  				}
-  				$('.edit-offer').css('overflow', 'hidden');
-  			});
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  			//Make the height transition animation possible
-  			$('.edit-offer .custom-dropdown').click(function() {
-  				$('.edit-offer').css('overflow', 'visible');
-  			});
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//This case the top header has different heights per tab
+
+			$('.nav-pills a').click(function() {
+				if ( $(this).attr('href') == '#offer-info' ) {
+					$('.edit-offer').css('max-height', '400px');
+					$('#content-body').addClass('edit-offer-tab');
+				}
+				else {
+					$('.edit-offer').css('max-height', '0');
+					$('#content-body').removeClass('edit-offer-tab');
+				}
+				$('.edit-offer').css('overflow', 'hidden');
+			});
+
+			// Initially count the amount of campaigns
+			var campaignCount = $('.variant-list > div').length;
+
+			initMultivariateSlider();
+
+			// Call this function when new campaigns are added to refresh the campaign count
+			function recountCampaigns() {
+				campaignCount = $('.variant-list > div').length;
+			}
+
+			// Adds new campaign for bandit
+			function appendNewCampaign() {
+
+				recountCampaigns();
+
+				recalculateMultivariateValues();
+				recalculateBandltValues();
+			}
+
+			function initMultivariateSlider() {
+				$('#multivariate .variant-percentage').css("width", (100 / campaignCount) + "%");
+			}
+
+			function recalculateMultivariateValues() {
+				$('#multivariate .variant-percentage:last').after('<div class="variant-percentage"><span>' + campaignCount + ':</span> <span class="percentage-content"></span></div>');
+				$('#multivariate .variant-percentage').css("width", (100 / campaignCount) + "%");
+			}
+
+			function recalculateBandltValues() {
+				$('#multi-armed-bandlt .variant-percentage:last').after('<div class="variant-percentage"><span>' + campaignCount + ':</span> <span class="percentage-content"></span></div>');
+				$('#multi-armed-bandlt .variant-percentage').css("width", (50 / campaignCount) + "%");
+				$('#multi-armed-bandlt .winning-percentage').css("width", "50%");
+				$('.percentage-content').text((50 / campaignCount).toFixed(1) + "%");
+				$('.winning-percentage-content').text("50%");
+				$('#multi-armed-bandlt').slider('value', 50);
+			}
+
+			//Slider customizations
+			$('#multi-armed-bandlt').slider({
+				value: 50,
+				// Add next line if the amount tick needs to be proportion to the amount of campaigns
+				// step: campaignCount
+				create: function() {
+					$('#multi-armed-bandlt .variant-percentage').css("width", (50 / campaignCount) + "%");
+					$('#multi-armed-bandlt .winning-percentage').css("width", "50%");
+					$('.percentage-content').text((50 / campaignCount) + "%");
+					$('.winning-percentage-content').text("50%");
+				},
+				slide: function(event, ui) {
+					$('#multi-armed-bandlt .variant-percentage').css("width", ui.value/campaignCount + "%");
+					$('.percentage-content').text((ui.value/campaignCount).toFixed(1) + "%");
+					$('#multi-armed-bandlt .winning-percentage').css("width", (100 - (ui.value).toFixed(1)) + "%");
+					$('.winning-percentage-content').text((100 - (ui.value).toFixed(1)) + "%");
+					// Hide elements on slider shift
+					if(ui.value/campaignCount < 5) {
+						$("#multi-armed-bandlt .percentage-label").hide();
+					} else {
+						$("#multi-armed-bandlt .percentage-label").show();
+					}
+					if(ui.value > 88) {
+						$('.winning-label').hide();
+					} else {
+						$('.winning-label').show();
+					}
+					if(ui.value > 97) {
+						$('.winning-percentage').hide();
+					} else {
+						$('.winning-percentage').show();
+					}
+				}
+			});
+
+			//Make the height transition animation possible
+			$('.edit-offer .custom-dropdown').click(function() {
+				$('.edit-offer').css('overflow', 'visible');
+			});
 
 
-  			//Slider Tab
-  			$('.offer-type a[slider-tab]').click(function() {
-  				var activeSlider = $(this).attr('slider-tab');
-  				$('.slider').addClass('hide');
-  				$('#'+ activeSlider).removeClass('hide');
-  			});
+			//Slider Tab
+			$('.offer-type a[slider-tab]').click(function() {
+				var activeSlider = $(this).attr('slider-tab');
+				$('.slider').addClass('hide');
+				$('#'+ activeSlider).removeClass('hide');
+			});
 
-  			//Add Variant - Create Variant Form
-  			$('.btn-add-variant').click(function() {
-  				var variantCount = parseInt( $('.variant').length ) + 1;
-  				var variantForm = '<div class="create-variant has-disable offer sub-table variant"link=tracking-edit-screen.html><table><tr><td class="cell cell-variant-info"><span class=campaign-id>Variant #' + variantCount + '</span><div class=campaign-name-infos><input type="text" class="form-control create-variant-name bold" placeholder="New Variant Name"></div><span class="campaign-date-info overwidth"><input type="text" class="form-control create-variant-link h-short" placeholder="New link URL"></span><td class="cell cell-buttons"><div class="active btn btn-action pxx-20 create-variant-cancel">Cancel</div> <div class="active btn btn-action pxx-20 btn-action-blue create-variant-save">Save</div></table></div>';
+			//Add Variant - Create Variant Form
+			$('.btn-add-variant').click(function() {
+				var variantCount = parseInt( $('.variant').length ) + 1;
+				var variantForm = '<div class="create-variant has-disable offer sub-table variant"link=tracking-edit-screen.html><table><tr><td class="cell cell-variant-info"><span class=campaign-id>Variant #' + variantCount + '</span><div class=campaign-name-infos><input type="text" class="form-control create-variant-name bold" placeholder="New Variant Name"></div><span class="campaign-date-info overwidth"><input type="text" class="form-control create-variant-link h-short" placeholder="New link URL"></span><td class="cell cell-buttons"><div class="active btn btn-action pxx-20 create-variant-cancel">Cancel</div> <div class="active btn btn-action pxx-20 btn-action-blue create-variant-save">Save</div></table></div>';
 
-  				$( ".variant:last-child" ).after( variantForm );
-  			});
+				$( ".variant:last-child" ).after( variantForm );
+			});
 
-  			//Cancel Button - Create Variant Form
-  			$(document).on('click', '.create-variant-cancel', function() {
-  				$(this).closest('.create-variant').remove();
-  			});
+			//Cancel Button - Create Variant Form
+			$(document).on('click', '.create-variant-cancel', function() {
+				$(this).closest('.create-variant').remove();
+			});
 
-  			//Save Button - Create Variant Form
-  			$(document).on('click', '.create-variant-save', function() {
+			//Save Button - Create Variant Form
+			$(document).on('click', '.create-variant-save', function() {
 
-  				var variantName = $(this).closest('.create-variant').find('.create-variant-name').val();
-  				var variantLink = $(this).closest('.create-variant').find('.create-variant-link').val();
-  				var variantCount = $(this).closest('.create-variant').find('.campaign-id').text();
+				var variantName = $(this).closest('.create-variant').find('.create-variant-name').val();
+				var variantLink = $(this).closest('.create-variant').find('.create-variant-link').val();
+				var variantCount = $(this).closest('.create-variant').find('.campaign-id').text();
 
-  				var newVariant = '<td class="cell cell-info"><span class=campaign-id>' + variantCount + '</span><div class=campaign-name-info><span class=campaign-name>' + variantName + '</span> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-rename-icon></div><div class="campaign-edit-info hide"><input class=campaign-edit> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-save-icon></div><span class="campaign-date-info overwidth">' + variantLink + '</span><td class="cell cell-views"><span>0</span><td class="cell cell-clicks"><span>0</span><td class="cell cell-ctr"><span>0%</span><td class="cell cell-conversions"><span>0</span><td class="cell cell-cvr"><span>0%</span><td class="cell cell-revenue"><span>$0.00</span><td class="cell cell-buttons"><a href=# class="btn no-hover btn-toggle"></a><div class="btn btn-no-fill btn-more-options has-popup no-hover"><span class=btn-more-arrow><img src=../assets/img/backend/icons/icon-circled-arrow-down.png></span><div class="popup popup-more"><a href=#>Duplicate</a> <a href=# data-target=#deleteModal1 data-toggle=modal>Delete</a></div></div><a href=# class="btn btn-no-fill btn-more"><span>More</span></a>';
+				var newVariant = '<td class="cell cell-info"><span class=campaign-id>' + variantCount + '</span><div class=campaign-name-info><span class=campaign-name>' + variantName + '</span> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-rename-icon></div><div class="campaign-edit-info hide"><input class=campaign-edit> <img src=../assets/img/backend/icons/icon-rename.png class=campaign-save-icon></div><span class="campaign-date-info overwidth">' + variantLink + '</span><td class="cell cell-views"><span>0</span><td class="cell cell-clicks"><span>0</span><td class="cell cell-ctr"><span>0%</span><td class="cell cell-conversions"><span>0</span><td class="cell cell-cvr"><span>0%</span><td class="cell cell-revenue"><span>$0.00</span><td class="cell cell-buttons"><a href=# class="btn no-hover btn-toggle"></a><div class="btn btn-no-fill btn-more-options has-popup no-hover"><span class=btn-more-arrow><img src=../assets/img/backend/icons/icon-circled-arrow-down.png></span><div class="popup popup-more"><a href=#>Duplicate</a> <a href=# data-target=#deleteModal1 data-toggle=modal>Delete</a></div></div><a href=# class="btn btn-no-fill btn-more"><span>More</span></a>';
 
-  				$(this).closest('.create-variant').removeClass( 'create-variant' );
-  				$(this).closest('tr').html( newVariant );
+				$(this).closest('.create-variant').removeClass( 'create-variant' );
+				$(this).closest('tr').html( newVariant );
 				$('.notice-message').append('<div class="campaign-created remove-on-click"><img src="../assets/img/backend/icons/icon-check.png" style="margin-right: 5px;"> <span>New Variant Created</span></div>');
-  			});
 
-  		});
-  	</script>
+				appendNewCampaign();
+			});
+		});
+	</script>
 
 </body>
 </html>

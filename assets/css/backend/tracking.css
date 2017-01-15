@@ -1410,6 +1410,7 @@ ul.custom-dropdown.grey-arrow {
 /* Slider */
 #multi-armed-bandlt {
     position: relative;
+    height: 30px;
 }
 
 .variant-percentage {
@@ -1454,6 +1455,10 @@ ul.custom-dropdown.grey-arrow {
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: ew-resize;
+}
+
+.ui-slider-handle .scrubber {
+    
 }
 
 .create-variant-link {
