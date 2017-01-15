@@ -236,6 +236,7 @@ $(document).on('click', '.campaign-name-info', function() {
 	$(this).next().removeClass('hide');
 	$(this).next().children('.campaign-edit').val(value);
 	$(this).next().children('.campaign-edit').focus();
+	$(this).next().children('.campaign-edit').on("keypress", keypressSave);
 });
 
 $(document).on('click', '.campaign-save-icon', function() {
@@ -246,11 +247,13 @@ $(document).on('click', '.campaign-save-icon', function() {
 	$(parent).prev().show();
 });
 
-$('.campaign-edit').on("keypress", function(e) {
-        if (e.keyCode == 13) {
-        	$(this).siblings('.campaign-save-icon').trigger('click');
-        }
-});
+$('.campaign-edit').on("keypress", keypressSave);
+
+let keypressSave = function(e) {
+    if (e.keyCode == 13) {
+    	$(this).siblings('.campaign-save-icon').trigger('click');
+    }
+}
 
 }); //Custom.js END
 
