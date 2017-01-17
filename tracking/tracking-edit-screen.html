@@ -667,6 +667,7 @@
 					$('.percentage-content').text((ui.value/campaignCount).toFixed(1) + "%");
 					$('#multi-armed-bandlt .winning-percentage').css("width", (100 - (ui.value).toFixed(1)) + "%");
 					$('.winning-percentage-content').text((100 - (ui.value).toFixed(1)) + "%");
+					$('#multi-armed-bandlt .scrubber').css('left', ui.value + "%");
 					// Hide elements on slider shift
 					if(ui.value/campaignCount < 5) {
 						$("#multi-armed-bandlt .percentage-label").hide();
